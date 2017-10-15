@@ -301,8 +301,8 @@ Storage.initPrefs = function () {
 			Storage.whenPrefsLoaded.load();
 			if (!Storage.whenTeamsLoaded.isLoaded) {
 				Storage.whenTeamsLoaded.isStalled = true;
-				if (window.app && app.rooms['teambuilder']) {
-					app.rooms['teambuilder'].updateTeamInterface();
+				if (window.app && app.rooms['.']) {
+					app.rooms['.'].updateTeamInterface();
 				}
 			}
 		}, 2000);
