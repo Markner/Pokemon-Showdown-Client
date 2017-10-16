@@ -248,7 +248,7 @@ var convertShowjoins = function () {
 		var showjoins = {};
 		var serverShowjoins = {global: (oldShowjoins ? 1 : 0)};
 		var showroomjoins = Storage.prefs('showroomjoins');
-		for (var roomid in showroomjoins) {
+		for (var roomid in showroomjoins) { // okay so zarel the body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.
 			serverShowjoins[roomid] = (showroomjoins[roomid] ? 1 : 0);
 		}
 		Storage.prefs('showroomjoins', null);
@@ -388,7 +388,7 @@ Storage.onMessage = function ($e) {
 			try {
 				// I really hope this is a Chrome bug that this can fail
 				Storage.crossOriginFrame.postMessage("", Storage.origin);
-			} catch (e) {
+			} catch (e) { // This value > might explain the supposed bug 'e' may be overwritten in IE 8 and earlier
 				return;
 			}
 
@@ -837,7 +837,7 @@ Storage.unpackTeam = function (buf) {
 
 		// moves
 		j = buf.indexOf('|', i);
-		set.moves = buf.substring(i, j).split(',').map(function (moveid) {
+		set.moves = buf.substring(i, j).split(',').map(function (moveid) { // Don't shouldn't make functions within a loop mate
 			return Tools.getMove(moveid).name;
 		});
 		i = j + 1;
